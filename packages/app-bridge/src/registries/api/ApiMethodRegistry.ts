@@ -36,6 +36,7 @@ export type ApiMethodRegistry = ApiMethodNameValidator<{
         response: SetAssetIdsByBlockAssetKeyResponse;
     };
     getSecureRequest: { payload: GetSecureRequestPayload; response: GetSecureRequestResponse };
+    getProxiedFetch: { payload: { url: string; options: RequestInit }; response: ReadableStream<Uint8Array> | null };
     getDocumentNavigation: { payload: GetDocumentNavigationPayload; response: GetDocumentNavigationResponse };
     getPortalNavigation: { payload: void; response: GetPortalNavigationResponse };
 }>;

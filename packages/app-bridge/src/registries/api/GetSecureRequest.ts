@@ -15,3 +15,8 @@ export const getSecureRequest = (payload: GetSecureRequestPayload) => ({
     name: 'getSecureRequest',
     payload,
 });
+
+export const getProxiedFetch = (payload: { url: string; options: RequestInit }) => ({
+    name: 'getProxiedFetch',
+    payload,
+});
