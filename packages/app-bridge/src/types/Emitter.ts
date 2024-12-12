@@ -142,7 +142,7 @@ export type EmitterEvents = {
           };
 
     'AppBridge:GuidelineDocumentCategory:DocumentPageAction': {
-        documentPage: { id: number; categoryId: number };
+        documentPage: { id: number; categoryId: number; documentId: number };
         action: 'add' | 'delete';
     };
 

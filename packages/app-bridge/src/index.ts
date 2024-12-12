@@ -7,7 +7,6 @@ enableMapSet();
 export * from './AppBridge';
 export * from './AppBridgeBlock';
 export * from './AppBridgeCreateAsset';
-export * from './AppBridgePlatformApp';
 export * from './AppBridgeTheme';
 export * from './errors';
 export * from './helpers';

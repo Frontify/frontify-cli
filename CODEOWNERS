@@ -183,4 +183,8 @@ packages/guideline-blocks-settings @Frontify/content-and-blocks
 
 packages/sidebar-settings @Frontify/content-and-blocks @Frontify/themes-and-navigation
 
+# App Bridge Theme
+
+packages/app-bridge-theme @Frontify/themes-and-navigation
+
 CODEOWNERS @Frontify/architecture

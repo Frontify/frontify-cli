@@ -12,7 +12,6 @@ import { useDocumentSection } from './useDocumentSection';
 const DOCUMENT_PAGE_ID = 45;
 
 const documentSections = [
-    // @ts-expect-error On purpose to test the function
     DocumentSectionDummy.withFields({ id: 464, title: null }),
     DocumentSectionDummy.withFields({ id: 356, title: 'New Title' }),
     DocumentSectionDummy.withFields({ id: 376, title: ' ' }),

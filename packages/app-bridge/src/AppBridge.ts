@@ -182,7 +182,7 @@ export interface AppBridge<
      * Sends a command to the Frontify platform.
      *
      * @returns A promise that resolves to acknowledge the dispatch.
-     * The event will be triggered at a later stage and can be subscribed to with {@link AppBridgePlatformApp.subscribe}.
+     * The event will be triggered at a later stage and can be subscribed to
      */
     dispatch<CommandName extends keyof Command>(
         dispatchHandler: DispatchHandlerParameter<CommandName, Command>,
@@ -217,7 +217,6 @@ export interface AppBridge<
 
     /**
      * Subscribes to an event with the given name and callback function.
-     * The event are fired from {@link AppBridgePlatformApp.dispatch}, {@link AppBridgePlatformApp.state} and {@link AppBridgePlatformApp.context}.
      *
      * @returns Function that can be used to unsubscribe from an event.
      * When called, this function will remove the subscription to the event and prevent any further callbacks from being executed.

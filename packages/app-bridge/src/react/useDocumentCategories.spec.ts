@@ -339,7 +339,7 @@ describe('useDocumentCategories', () => {
         // Trigger a "document page add" event in the specified document
         window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
             action: 'add',
-            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_2 },
+            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_2, documentId: DOCUMENT_ID },
         });
 
         await waitFor(() => {
@@ -370,7 +370,7 @@ describe('useDocumentCategories', () => {
         // Trigger a "document page add" event in the specified document
         window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
             action: 'add',
-            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_4 },
+            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_4, documentId: DOCUMENT_ID },
         });
 
         await waitFor(() => {
@@ -401,7 +401,7 @@ describe('useDocumentCategories', () => {
         // Trigger a "document page delete" event in the specified document
         window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
             action: 'delete',
-            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_3 },
+            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_3, documentId: DOCUMENT_ID },
         });
 
         await waitFor(() => {
@@ -432,7 +432,7 @@ describe('useDocumentCategories', () => {
         // Trigger a "document page delete" event in the specified document
         window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
             action: 'delete',
-            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_4 },
+            documentPage: { id: DOCUMENT_PAGE_ID, categoryId: DOCUMENT_CATEGORY_ID_4, documentId: DOCUMENT_ID },
         });
 
         await waitFor(() => {

@@ -29,7 +29,7 @@ const insertDocumentSectionIntoArray = (
 const updateDocumentSectionInArray = (
     previousDocumentSections: DocumentSection[],
     documentSectionIdToUpdate: number,
-    title: string,
+    title: Nullable<string>,
     slug: string,
 ) =>
     previousDocumentSections.map((documentSection) =>

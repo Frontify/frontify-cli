@@ -1,0 +1,82 @@
+name: Guideline Themes CI
+
+on:
+    pull_request:
+        paths:
+            - packages/guideline-themes/**
+
+# Ensures that only one workflow per branch will run at a time.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    lint-typecheck:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        strategy:
+            fail-fast: false
+            matrix:
+                app-bridge-theme-version: ["workspace:^"]
+
+        steps:
+            - name: Checkout default branch
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v3
+              with:
+                  run_install: false
+
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: ".nvmrc"
+                  cache: "pnpm"
+
+            - name: Install npm dependencies
+              run: pnpm i --frozen-lockfile
+
+            - name: Build @frontify/app-bridge-theme (if workspace)
+              if: matrix.app-bridge-theme-version == 'workspace:^'
+              run: pnpm build:app-bridge-theme
+
+            - name: Add app-bridge-theme dependency
+              run: pnpm add @frontify/app-bridge-theme@${{ matrix.app-bridge-theme-version }} --filter {packages/guideline-themes}
+
+            - name: Typecheck code
+              run: pnpm --stream --filter {packages/guideline-themes} typecheck
+
+            - name: Lint code
+              run: pnpm --stream --filter {packages/guideline-themes} lint
+
+    unit-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        strategy:
+            fail-fast: false
+
+        steps:
+            - name: Checkout current commit
+              uses: actions/checkout@v4
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v3
+              with:
+                  run_install: false
+
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: ".nvmrc"
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Tests
+              run: pnpm --stream --filter {packages/guideline-themes} test

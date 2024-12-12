@@ -11,5 +11,4 @@ export enum Topic {
     OpenAssetChooser = 'openAssetChooser',
     PostExternalAssets = 'postExternalAssets',
     PutAppState = 'putAppState',
-    Init = 'Init',
 }

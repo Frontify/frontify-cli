@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type PartialDeep } from 'type-fest';
+
 export type ColorApi = {
     id: number;
     creator: number;
@@ -94,36 +96,30 @@ export type ColorApiPatch = Partial<{
 
 export type Color = {
     id: number;
-    name: Nullable<string>;
     sort: number;
+} & ColorAsset;
+
+// This type should be evolved to Asset in the long run
+export type ColorAsset = {
+    title: Nullable<string>;
+    revision: ColorRevision;
+};
+
+export type ColorRevision = {
     nameCss: Nullable<string>;
     hex: Nullable<string>;
-    red: Nullable<number>;
-    green: Nullable<number>;
-    blue: Nullable<number>;
-    alpha: Nullable<number>;
     hue: number;
     saturation: number;
     lightness: Nullable<number>;
-    c: Nullable<number>;
-    m: Nullable<number>;
-    y: Nullable<number>;
-    k: Nullable<number>;
-    pantone: Nullable<string>;
     ral: Nullable<string>;
     oracal: Nullable<string>;
-    pantoneCoated: Nullable<string>;
-    pantoneUncoated: Nullable<string>;
-    cmykCoated: Nullable<string>;
-    cmykUncoated: Nullable<string>;
-    cmykNewspaper: Nullable<string>;
     ncs: Nullable<string>;
-    pantoneCp: Nullable<string>;
-    pantonePlastics: Nullable<string>;
-    pantoneTextile: Nullable<string>;
     hks: Nullable<string>;
     threeM: Nullable<string>;
     lab: Nullable<string>;
+    cmyk: CmykColor;
+    rgba: RgbaColor;
+    pantone: PantoneColor;
 };
 
 export type ColorCreate = {
@@ -134,4 +130,35 @@ export type ColorCreate = {
     alpha: number;
 };
 
-export type ColorPatch = Partial<Omit<Color, 'id' | 'hex' | 'hue' | 'saturation' | 'lightness'>>;
+export type ColorPatch = PartialDeep<
+    Omit<ColorRevision, 'hex' | 'hue' | 'saturation' | 'lightness'> & {
+        title: Nullable<string>;
+        sort: number;
+    }
+>;
+
+type RgbaColor = {
+    red: Nullable<number>;
+    green: Nullable<number>;
+    blue: Nullable<number>;
+    alpha: Nullable<number>;
+};
+
+type CmykColor = {
+    cyan: Nullable<number>;
+    magenta: Nullable<number>;
+    yellow: Nullable<number>;
+    black: Nullable<number>;
+    coated: Nullable<string>;
+    uncoated: Nullable<string>;
+    newspaper: Nullable<string>;
+};
+
+type PantoneColor = {
+    code: Nullable<string>;
+    coated: Nullable<string>;
+    uncoated: Nullable<string>;
+    cp: Nullable<string>;
+    plastics: Nullable<string>;
+    textile: Nullable<string>;
+};

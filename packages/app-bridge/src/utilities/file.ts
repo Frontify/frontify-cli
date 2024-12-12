@@ -2,6 +2,11 @@
 
 import { FileExtension } from '../types/FileExtension';
 
+export const getMimeType = (filetypes: string[]): string[] => {
+    return filetypes
+        .map((filetype) => mimeTypes[filetype as keyof typeof mimeTypes])
+        .filter((mimeType) => mimeType !== undefined);
+};
 export const mimeTypes: Record<FileExtension, string> = {
     [FileExtension.Aac]: 'audio/aac',
     [FileExtension.Ac3]: 'audio/ac3',
@@ -210,10 +215,4 @@ export const mimeTypes: Record<FileExtension, string> = {
     [FileExtension.Xwd]: 'image/x-xwindowdump',
     [FileExtension.Xyz]: 'chemical/x-xyz',
     [FileExtension.Zip]: 'application/zip',
-};
-
-export const getMimeType = (filetypes: string[]): string[] => {
-    return filetypes
-        .map((filetype) => mimeTypes[filetype as keyof typeof mimeTypes])
-        .filter((mimeType) => mimeType !== undefined);
 };

@@ -1,0 +1,60 @@
+{
+    "name": "@frontify/guideline-themes",
+    "type": "module",
+    "version": "0.0.1-alpha.6",
+    "description": "Provides types and helpers for the guideline themes development",
+    "author": "Frontify Developers <developers@frontify.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Frontify/brand-sdk",
+        "directory": "packages/guideline-themes"
+    },
+    "sideEffects": false,
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.umd.js",
+            "import": "./dist/index.es.js"
+        }
+    },
+    "main": "./dist/index.es.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "test": "vitest run --silent",
+        "test:coverage": "vitest --coverage",
+        "test:watch": "vitest",
+        "test:ui": "vitest --ui",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@frontify/app-bridge-theme": "workspace:^",
+        "@frontify/sidebar-settings": "^0.9.20"
+    },
+    "devDependencies": {
+        "@frontify/eslint-config-react": "0.17.6",
+        "@types/node": "^18.19.31",
+        "@types/react": "^18.2.75",
+        "@vitest/coverage-v8": "^1.4.0",
+        "@vitest/ui": "^1.4.0",
+        "eslint": "^8.57.0",
+        "eslint-plugin-notice": "^0.9.10",
+        "prettier": "^3.2.5",
+        "typescript": "^5.4.4",
+        "vite": "^5.2.10",
+        "vite-plugin-dts": "^3.8.1",
+        "vite-plugin-externals": "^0.6.2",
+        "vitest": "^1.4.0"
+    }
+}

@@ -260,6 +260,7 @@ export const useGuidelineActions = (appBridge: AppBridgeTheme) => {
                     documentPage: {
                         id: result.id,
                         categoryId: documentPage.categoryId,
+                        documentId: documentPage.documentId,
                     },
                     action: 'add',
                 });
@@ -310,7 +311,11 @@ export const useGuidelineActions = (appBridge: AppBridgeTheme) => {
 
             if (documentPage.categoryId) {
                 window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
-                    documentPage: { ...documentPage, categoryId: documentPage.categoryId },
+                    documentPage: {
+                        ...documentPage,
+                        categoryId: documentPage.categoryId,
+                        documentId: documentPage.documentId,
+                    },
                     action: 'delete',
                 });
             } else {
@@ -334,7 +339,7 @@ export const useGuidelineActions = (appBridge: AppBridgeTheme) => {
 
             if (categoryId) {
                 window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
-                    documentPage: { id: duplicatedDocumentPage.id, categoryId },
+                    documentPage: { id: duplicatedDocumentPage.id, categoryId, documentId },
                     action: 'add',
                 });
             }

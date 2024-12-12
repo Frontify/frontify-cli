@@ -26,7 +26,6 @@ export * from './useGuidelineActions';
 export * from './useLanguage';
 export * from './useNavigationManager';
 export * from './usePageTemplateSettings';
-export * from './usePlatformAppBridge';
 export * from './usePrivacySettings';
 export * from './useReadyForPrint';
 export * from './useTemplateAssets';

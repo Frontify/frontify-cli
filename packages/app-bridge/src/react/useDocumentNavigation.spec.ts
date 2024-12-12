@@ -86,7 +86,7 @@ describe('useDocumentNavigation', () => {
         testEventHandler(() => {
             window.emitter.emit('AppBridge:GuidelineDocumentCategory:DocumentPageAction', {
                 action: 'add',
-                documentPage: { categoryId: 0, id: 0 },
+                documentPage: { categoryId: 0, id: 0, documentId: 0 },
             });
         }));
 

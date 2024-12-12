@@ -379,8 +379,63 @@ export const getAppBridgeThemeStub = ({
             openAssetChooser(callback);
         }),
         api: stub<Parameters<AppBridgeTheme['api']>>().resolves(),
-        state: stub<Parameters<AppBridgeTheme['state']>>().resolves(),
-        context: stub<Parameters<AppBridgeTheme['context']>>().resolves(),
+        context: stub<Parameters<AppBridgeTheme['context']>>().callsFake((args) => {
+            if (args === undefined) {
+                return {
+                    get: () => ({ portalId, brandId, projectId, isEditing: editorState }),
+                };
+            } else {
+                switch (args) {
+                    case 'portalId':
+                        return {
+                            get: () => portalId,
+                        };
+                    case 'brandId':
+                        return {
+                            get: () => brandId,
+                        };
+                    case 'projectId':
+                        return {
+                            get: () => projectId,
+                        };
+                    case 'isEditing':
+                        return {
+                            get: () => editorState,
+                        };
+                    default:
+                        return {
+                            get: () => {
+                                throw new Error(`Unknown context key: ${args}`);
+                            },
+                        };
+                }
+            }
+        }),
+        state: stub<Parameters<AppBridgeTheme['state']>>().callsFake((args) => {
+            if (args === undefined) {
+                return {
+                    get: () => [themeSettings],
+                    set: () => undefined,
+                };
+            } else {
+                switch (args) {
+                    case 'settings':
+                        return {
+                            get: () => themeSettings,
+                            set: () => undefined,
+                        };
+                    default:
+                        return {
+                            get: () => {
+                                throw new Error(`Unknown context key: ${args}`);
+                            },
+                            set: () => {
+                                throw new Error(`Unknown context key: ${args}`);
+                            },
+                        };
+                }
+            }
+        }),
         subscribe: stub<Parameters<AppBridgeTheme['subscribe']>>().resolves(),
         dispatch: stub<Parameters<AppBridgeTheme['dispatch']>>().resolves(),
     };

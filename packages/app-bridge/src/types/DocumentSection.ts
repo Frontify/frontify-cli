@@ -6,7 +6,7 @@ export type DocumentSectionApi = {
     page_id: number;
     slug: string;
     sort: number;
-    title: string;
+    title: Nullable<string>;
     creator: number;
     created: string;
     modifier: Nullable<number>;
@@ -17,7 +17,7 @@ export type DocumentSectionApi = {
 
 export type DocumentSection = {
     id: number;
-    title: string;
+    title: Nullable<string>;
     slug: string;
     sort: number;
     permanentLink: string;
@@ -31,7 +31,7 @@ export type AddDocumentSectionPayload = {
 
 export type UpdateDocumentSectionPayload = {
     id: number;
-    title: string;
+    title: Nullable<string>;
     slug: string;
     documentPageId: number;
 };
