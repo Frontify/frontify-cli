@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import containerQueryPlugin from '@tailwindcss/container-queries';
+import plugin from 'tailwindcss/plugin';
 
 module.exports = {
     presets: [require('@frontify/fondue/tailwind')],
@@ -8,7 +9,16 @@ module.exports = {
     corePlugins: {
         preflight: false,
     },
-    plugins: [containerQueryPlugin],
+    plugins: [
+        containerQueryPlugin,
+        plugin(({ addBase }) => {
+            addBase({
+                '*': { boxSizing: 'content-box' },
+                '::before': { boxSizing: 'content-box' },
+                '::after': { boxSizing: 'content-box' },
+            });
+        }),
+    ],
     theme: {
         extend: {
             colors: {
