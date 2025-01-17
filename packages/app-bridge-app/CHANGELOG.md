@@ -1,5 +1,11 @@
 # @frontify/app-bridge-app
 
+## 0.1.4
+
+### Patch Changes
+
+-   [#1163](https://github.com/Frontify/brand-sdk/pull/1163) [`df6e41a`](https://github.com/Frontify/brand-sdk/commit/df6e41a97a290457cc5f83783c324c2765f2aba2) Thanks [@julianiff](https://github.com/julianiff)! - feat: add context instead of single contexts
+
 ## 0.1.3
 
 ### Patch Changes
