@@ -23,6 +23,38 @@ const VALID_MANIFEST = {
                 title: 'action title',
             },
         },
+        automation: {
+            actions: {
+                setAssetTitle: {
+                    name: 'Set asset title',
+                    variables: {
+                        title: {
+                            name: 'Asset title',
+                            type: 'STRING',
+                        },
+                    },
+                    workflowId: '7DQ92y5AldGBwZ34',
+                    description: 'Changes the title of an asset',
+                },
+            },
+            triggers: {
+                assetsCreated: {
+                    name: 'Assets created',
+                    variables: {
+                        id: {
+                            key: 'asset.id',
+                            name: 'Asset Id',
+                            type: 'NUMBER',
+                        },
+                        title: {
+                            name: 'Asset title',
+                            type: 'STRING',
+                        },
+                    },
+                    description: 'Triggered when assets are created',
+                },
+            },
+        },
     },
     metadata: {
         version: 1,
@@ -267,6 +299,30 @@ const MANIFEST_WITH_SECRET_BUT_NO_LABEL = {
             },
             assetCreation: {
                 title: 'action title',
+            },
+        },
+    },
+    metadata: {
+        version: 1,
+    },
+};
+
+const MANIFEST_WITH_INVALID_VARIABLE_TYPE = {
+    appType: 'platform-app',
+    appId: 'abcdabcdabcdabcdabcdabcda',
+    surfaces: {
+        automation: {
+            actions: {
+                setAssetTitle: {
+                    name: 'Set asset title',
+                    workflowId: '7DQ92y5AldGBwZ32',
+                    variables: {
+                        title: {
+                            name: 'Asset title',
+                            type: 'VARCHAR',
+                        },
+                    },
+                },
             },
         },
     },
@@ -869,5 +925,11 @@ describe('Verify Platform App Manifest', () => {
         expect(() =>
             verifyManifest(INVALID_MANIFEST_NETWORK_ALLOWED_HOST_UNDESCORE, platformAppManifestSchemaV1),
         ).toThrow();
+    });
+
+    it('should detect when action variables have invalid types ', () => {
+        expect(() => verifyManifest(MANIFEST_WITH_INVALID_VARIABLE_TYPE, platformAppManifestSchemaV1)).toThrow(
+            'VARCHAR',
+        );
     });
 });

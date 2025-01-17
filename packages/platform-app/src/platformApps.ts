@@ -44,10 +44,18 @@ export type PlatformAppSimpleBlock =
 export type PlatformAppSettings = PlatformAppSimpleBlock | DynamicSettingBlock<AppBridgePlatformApp>;
 
 export type PlatformAppSettingsStructureExport = { [customSectionName: string]: PlatformAppSettings[] };
+export type PlatformAppMultiSettingsStructureExport = {
+    default: PlatformAppSettingsStructureExport;
+    automation?: {
+        actions?: {
+            [customActionId: string]: PlatformAppSettingsStructureExport;
+        };
+    };
+};
 
 export type PlatformAppConfigExport = {
     app: FC;
-    settings: PlatformAppSettingsStructureExport;
+    settings: PlatformAppMultiSettingsStructureExport | PlatformAppSettingsStructureExport;
 };
 
 /**

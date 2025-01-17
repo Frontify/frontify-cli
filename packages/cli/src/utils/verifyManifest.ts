@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { array, number, object, string, z } from 'zod';
+import { array, number, object, string, record, z } from 'zod';
 
 const forbiddenExtensions = ['exe', 'dmg', 'cmd', 'sh', 'bat'];
 const getForbiddenExtensionsErrorMessage = (surfaceName: string) =>
@@ -71,6 +71,48 @@ const endpointCallSchema = object({
     ),
     resource: string(),
     options: requestOptionsSchema,
+});
+
+const variableTypes = z.enum([
+    'STRING',
+    'NUMBER',
+    'URL',
+    'EMAIL',
+    'BOOLEAN',
+    'DATE',
+    'OPTIONS',
+    'USER',
+    'ASSET',
+    'CUSTOM_METADATA_PROPERTY',
+    'WORKFLOW_TASK_STATUS',
+]);
+const variablesSchema = object({
+    name: string().min(1).max(80),
+    type: variableTypes,
+});
+
+const automationActionSchema = object({
+    name: string().min(1).max(80),
+    workflowId: string()
+        .min(16)
+        .max(16)
+        .refine(
+            (workflowId) => {
+                return /^\w+$/.test(workflowId);
+            },
+            {
+                message:
+                    "Workflow Id must be unique and should only contain letters from a-z, A-Z, numbers from 0-9 and '_' without any spaces",
+            },
+        ),
+    description: string().optional(),
+    variables: record(variablesSchema),
+});
+
+const automationTriggerSchema = object({
+    name: string().min(1).max(80),
+    description: string().optional(),
+    variables: record(variablesSchema),
 });
 
 const hostnameRegex =
@@ -197,6 +239,10 @@ export const platformAppManifestSchemaV1 = object({
                 ),
             }).optional(),
             assetCreation: assetCreationShape,
+        }).optional(),
+        automation: object({
+            actions: record(automationActionSchema).optional(),
+            triggers: record(automationTriggerSchema).optional(),
         }).optional(),
     }).optional(),
     metadata: object({
