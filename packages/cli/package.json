@@ -54,7 +54,7 @@
         "@types/mock-fs": "^4.13.4",
         "@types/node": "^18.19.31",
         "@types/prompts": "^2.4.9",
-        "@types/ws": "8.5.10",
+        "@types/ws": "8.5.13",
         "@vitest/coverage-v8": "1.4.0",
         "@vitest/ui": "^1.4.0",
         "eslint": "^8.57.0",
