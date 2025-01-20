@@ -265,8 +265,8 @@ importers:
         specifier: ^2.4.9
         version: 2.4.9
       '@types/ws':
-        specifier: 8.5.10
-        version: 8.5.10
+        specifier: 8.5.13
+        version: 8.5.13
       '@vitest/coverage-v8':
         specifier: 1.4.0
         version: 1.4.0(vitest@1.6.0(@types/node@18.19.39)(@vitest/ui@1.6.0)(happy-dom@13.10.1)(terser@5.31.1))
@@ -3080,8 +3080,8 @@ packages:
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
 
-  '@types/ws@8.5.10':
-    resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
+  '@types/ws@8.5.13':
+    resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -12709,7 +12709,6 @@ snapshots:
   '@types/node@18.19.71':
     dependencies:
       undici-types: 5.26.5
-    optional: true
 
   '@types/node@20.14.9':
     dependencies:
@@ -12735,7 +12734,7 @@ snapshots:
 
   '@types/set-cookie-parser@2.4.9':
     dependencies:
-      '@types/node': 18.19.39
+      '@types/node': 18.19.71
 
   '@types/sinon@17.0.3':
     dependencies:
@@ -12754,9 +12753,9 @@ snapshots:
 
   '@types/unist@3.0.2': {}
 
-  '@types/ws@8.5.10':
+  '@types/ws@8.5.13':
     dependencies:
-      '@types/node': 18.19.39
+      '@types/node': 18.19.71
 
   '@types/yargs-parser@21.0.3':
     optional: true
@@ -12773,7 +12772,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 18.19.39
+      '@types/node': 18.19.71
     optional: true
 
   '@typescript-eslint/eslint-plugin@7.14.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)':
